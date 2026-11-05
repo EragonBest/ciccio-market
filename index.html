@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>Ciccio Market</title>
+  <!-- SDK YouTube Playables: deve essere caricato prima del codice del gioco -->
+  <script src="https://www.youtube.com/game_api/v1"></script>
+  <style>:root{--ink:#2f3247;--red:#f2463c;--green:#46c35a;--yellow:#ffd23f}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{overscroll-behavior:none;height:100%;color:var(--ink);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;background:#9ad8ff;margin:0;font-family:Arial Rounded MT Bold,"Baloo 2",Fredoka,Nunito,Trebuchet MS,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;font-weight:800;overflow:hidden}#game{touch-action:none;outline:none;width:100%;height:100%;display:block;position:fixed;top:0;bottom:0;left:0;right:0}#hud{pointer-events:none;position:fixed;top:0;bottom:0;left:0;right:0}#hud>*{pointer-events:none}.pill{background:#fff;border-radius:999px;box-shadow:0 4px #2f32472e,0 8px 18px #2f32472e}#money{left:max(12px, env(safe-area-inset-left));top:max(12px, env(safe-area-inset-top));align-items:center;gap:10px;padding:8px 18px 8px 10px;font-size:clamp(20px,3.4vmin,30px);display:flex;position:absolute}#money.bump{animation:.18s ease-out bump}@keyframes bump{50%{transform:scale(1.12)}}.bill{background:var(--green);border:.12em solid #2e9e48;border-radius:.2em;flex:none;width:1.7em;height:1.05em;position:relative}.bill:after{content:"";background:#d8ffd8;border-radius:50%;width:.5em;height:.5em;margin:-.25em;position:absolute;top:50%;left:50%}#topRight{right:max(12px, env(safe-area-inset-right));top:max(12px, env(safe-area-inset-top));align-items:center;gap:10px;display:flex;position:absolute}#setBtn{pointer-events:auto;cursor:pointer;font:inherit;color:var(--ink);background:#fff;border:0;place-items:center;width:clamp(46px,7.5vmin,60px);height:clamp(46px,7.5vmin,60px);padding:0;display:grid}#setBtn:active{transform:translateY(2px)}#setBtn svg{width:58%;height:58%}#upBtn{pointer-events:auto;cursor:pointer;font:inherit;color:var(--ink);background:var(--yellow);border:0;align-items:center;gap:8px;height:clamp(46px,7.5vmin,60px);padding:0 18px 0 12px;font-size:clamp(15px,2.5vmin,20px);display:flex;position:relative}#upBtn:active{transform:translateY(2px)}#upBtn .arrow{background:#fff;border-radius:50%;place-items:center;width:1.7em;height:1.7em;font-size:1.05em;display:grid}#upBtn .dot{background:var(--red);border:3px solid #fff;border-radius:50%;width:18px;height:18px;display:none;position:absolute;top:-3px;right:-3px}#upBtn.can .dot{animation:1s infinite pulse;display:block}@keyframes pulse{50%{transform:scale(1.3)}}#hint{left:50%;bottom:max(26px, env(safe-area-inset-bottom));color:#fff;text-align:center;opacity:0;background:#2f3247db;border-radius:22px;width:max-content;max-width:92vw;padding:10px 22px;font-size:clamp(15px,2.6vmin,22px);transition:opacity .25s;position:absolute;transform:translate(-50%)}#hint.on{opacity:1}#joy{background:#ffffff47;border:3px solid #ffffffbf;border-radius:50%;width:130px;height:130px;margin:-65px 0 0 -65px;display:none;position:absolute}#joyKnob{background:#fff;border-radius:50%;width:56px;height:56px;margin:-28px;position:absolute;top:50%;left:50%;box-shadow:0 3px 10px #00000040}#boosts{left:max(12px, env(safe-area-inset-left));top:calc(max(12px, env(safe-area-inset-top)) + clamp(48px, 8vmin, 62px));flex-direction:column;align-items:flex-start;gap:6px;display:flex;position:absolute}#boosts .b{background:var(--ink);color:#fff;border-radius:999px;align-items:center;gap:6px;padding:5px 13px 5px 9px;font-size:clamp(15px,2.6vmin,19px);display:flex;box-shadow:0 3px #0003}#boosts .b.low{background:var(--red)}#offer{right:max(12px, env(safe-area-inset-right));pointer-events:auto;cursor:pointer;font:inherit;color:var(--ink);background:#fff;border:0;border-radius:22px;flex-direction:column;align-items:center;gap:4px;width:clamp(88px,14vmin,112px);padding:9px 8px 12px;display:none;position:absolute;top:34%;overflow:hidden}#offer.on{animation:.35s ease-out offerIn,1.1s ease-in-out .35s infinite offerPulse;display:flex}@keyframes offerIn{0%{transform:translate(130%)}to{transform:translate(0)}}@keyframes offerPulse{50%{transform:scale(1.08)}}#offerIco{font-size:clamp(36px,6.5vmin,50px);line-height:1.1}#offerName{text-align:center;font-size:clamp(12px,2vmin,15px);line-height:1.1}#offer .tag{background:var(--green);color:#fff;white-space:nowrap;border-radius:999px;padding:4px 10px;font-size:clamp(12px,2vmin,15px)}#offerBar{background:var(--yellow);transform-origin:0;width:100%;height:5px;position:absolute;bottom:0;left:0}#adWrap{pointer-events:auto;background:#2f32478c;place-items:center;display:none;position:absolute;top:0;bottom:0;left:0;right:0}#adWrap.on{display:grid}#adBox,#adTestBox{width:min(94vw,470px);color:var(--ink);background:#fff8ea;border-radius:26px;padding:16px;animation:.22s ease-out pop;box-shadow:0 8px #2f324740,0 20px 50px #00000059}#adBox h2,#adTestBox h2{text-align:center;margin:2px 0 12px;font-size:24px}#adGo{pointer-events:auto;background:var(--green);color:#fff;width:100%;font:inherit;cursor:pointer;border:0;border-radius:16px;justify-content:center;align-items:center;gap:10px;padding:14px 10px;font-size:19px;display:flex;box-shadow:0 5px #2e9e48}#adGo:active{transform:translateY(3px);box-shadow:0 2px #2e9e48}#adGo .play{border-top:9px solid #0000;border-bottom:9px solid #0000;border-left:14px solid #fff;width:0;height:0}#adNo,#adSkip{pointer-events:auto;color:var(--ink);font:inherit;opacity:.65;cursor:pointer;background:0 0;border:0;margin:10px auto 0;padding:8px 18px;font-size:16px;text-decoration:underline;display:block}#adSkip{margin-top:2px}#adTest{z-index:20;background:#2f324773;place-items:center;display:none;position:fixed;top:0;bottom:0;left:0;right:0}#adTest.on{display:grid}#adTestN{background:var(--green);color:#fff;border-radius:50%;flex:none;place-items:center;width:46px;height:46px;font-size:22px;display:grid;box-shadow:0 4px #2e9e48}#toast{color:#fff;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:0 5px 0 var(--ink);white-space:nowrap;font-size:clamp(30px,7vmin,64px);position:absolute;top:24%;left:50%;transform:translate(-50%,-50%)scale(0)}#toast.on{animation:1.7s ease-out forwards toast}@keyframes toast{0%{transform:translate(-50%,-50%)scale(0)}12%{transform:translate(-50%,-50%)scale(1.2)}20%{transform:translate(-50%,-50%)scale(1)}80%{opacity:1;transform:translate(-50%,-50%)scale(1)}to{opacity:0;transform:translate(-50%,-70%)scale(1)}}.floater{color:#fff;-webkit-text-stroke:1.5px #1f7a36;paint-order:stroke fill;text-shadow:0 2px #1f7a36;white-space:nowrap;font-size:clamp(18px,3.2vmin,28px);animation:.9s ease-out forwards floatUp;position:absolute;transform:translate(-50%,-50%)}.floater.emo{-webkit-text-stroke:0;text-shadow:none;font-size:clamp(24px,4.5vmin,38px)}@keyframes floatUp{0%{opacity:0;margin-top:0}15%{opacity:1}to{opacity:0;margin-top:-70px}}#panelWrap{pointer-events:auto;background:#2f324773;place-items:center;display:none;position:absolute;top:0;bottom:0;left:0;right:0}#panelWrap.on{display:grid}#panel{background:#fff8ea;border-radius:26px;width:min(94vw,470px);max-height:90vh;padding:16px;animation:.22s ease-out pop;overflow:auto;box-shadow:0 8px #2f324740,0 20px 50px #00000059}@keyframes pop{0%{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}#panel h2{text-align:center;margin:2px 0 12px;font-size:24px}#panelClose{position:absolute;top:0;right:0}.phead{position:relative}.xbtn{pointer-events:auto;background:var(--red);color:#fff;width:40px;height:40px;font:inherit;cursor:pointer;border:0;border-radius:50%;font-size:20px;position:absolute;top:-4px;right:0;box-shadow:0 3px #b02c25}.row{background:#fff;border-radius:18px;align-items:center;gap:12px;margin-bottom:10px;padding:10px 12px;display:flex;box-shadow:0 3px #2f32471f}.row .ico{background:#ffe9b8;border-radius:14px;flex:none;place-items:center;width:46px;height:46px;font-size:30px;display:grid}.row .info{flex:1;min-width:0}.row .name{font-size:16px}.row .desc{opacity:.65;font-size:12px;font-weight:600}.pips{gap:4px;margin-top:5px;display:flex}.pips i{background:#e4e0d6;border-radius:4px;width:16px;height:7px}.pips i.on{background:var(--green)}.buy{pointer-events:auto;background:var(--green);color:#fff;font:inherit;cursor:pointer;border:0;border-radius:14px;justify-content:center;align-items:center;gap:6px;min-width:92px;padding:10px 12px;font-size:16px;display:flex;box-shadow:0 4px #2e9e48}.buy:active{transform:translateY(2px);box-shadow:0 2px #2e9e48}.buy.off{background:#c9c9c9;box-shadow:0 4px #a9a9a9}.buy.maxed{background:var(--yellow);color:var(--ink);box-shadow:0 4px #d9a900}.sw{pointer-events:auto;cursor:pointer;background:#c9c9c9;border:0;border-radius:999px;flex:none;width:62px;height:34px;transition:background .15s;position:relative;box-shadow:inset 0 2px #0000001f}.sw:after{content:"";background:#fff;border-radius:50%;width:26px;height:26px;transition:left .15s;position:absolute;top:4px;left:4px;box-shadow:0 2px 4px #00000040}.sw.on{background:var(--green)}.sw.on:after{left:32px}.row.dim{opacity:.45}@media (max-width:520px){#upLbl{display:none}#upBtn{padding:0 10px}}.buy .bill{background:0 0;border-color:#fff;font-size:11px}#loading{z-index:10;background:radial-gradient(circle at 50% 40%,#ffe27a,#ffb347 70%);place-items:center;transition:opacity .5s;display:grid;position:fixed;top:0;bottom:0;left:0;right:0}#loading.hide{opacity:0;pointer-events:none}.logo{text-align:center}.logo .l1{color:#fff;-webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:0 7px 0 var(--ink);letter-spacing:1px;font-size:clamp(42px,11vmin,96px);line-height:.95}.logo .l2{color:var(--red);-webkit-text-stroke:3px #fff;paint-order:stroke fill;text-shadow:0 6px 0 var(--ink);font-size:clamp(30px,8vmin,70px)}.bar{border:3px solid var(--ink);background:#2f324740;border-radius:999px;width:min(70vw,340px);height:22px;margin:28px auto 10px;overflow:hidden}#barFill{background:var(--green);width:0%;height:100%;transition:width .2s}#loadTxt{font-size:16px}</style>
+  <script type="module" crossorigin src="./assets/index-Dmnxp3ub.js"></script>
+</head>
+<body>
+  <canvas id="game" tabindex="0"></canvas>
+  <div id="hud">
+    <div id="money" class="pill"><span class="bill"></span><span id="moneyVal">0</span></div>
+    <div id="topRight">
+      <button id="setBtn" class="pill" aria-label="Impostazioni">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3.2"/>
+          <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.9 2.9l-.1-.1a1.7 1.7 0 0 0-2.8 1.2V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-2.8-1.2l-.1.1a2 2 0 1 1-2.9-2.9l.1-.1a1.7 1.7 0 0 0-1.2-2.8H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.2-2.8l-.1-.1a2 2 0 1 1 2.9-2.9l.1.1a1.7 1.7 0 0 0 2.8-1.2V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 2.8 1.2l.1-.1a2 2 0 1 1 2.9 2.9l-.1.1a1.7 1.7 0 0 0 1.2 2.8H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>
+        </svg>
+      </button>
+      <button id="upBtn" class="pill"><span class="arrow">⬆</span><span id="upLbl"></span><span class="dot"></span></button>
+    </div>
+    <div id="hint"></div>
+    <div id="joy"><div id="joyKnob"></div></div>
+    <div id="floaters"></div>
+    <div id="boosts"></div>
+    <button id="offer" class="pill"><span id="offerIco"></span><span id="offerName"></span><span class="tag">▶ <span id="offerLbl"></span></span><span id="offerBar"></span></button>
+    <div id="toast"></div>
+    <div id="adWrap">
+      <div id="adBox">
+        <div class="phead"><h2 id="adTitle"></h2><button id="adX" class="xbtn">✕</button></div>
+        <div class="row">
+          <div class="ico" id="adIco"></div>
+          <div class="info"><div class="name" id="adName"></div><div class="desc" id="adDesc"></div></div>
+        </div>
+        <button id="adGo"><span class="play"></span><span id="adGoLbl"></span></button>
+        <button id="adNo"></button>
+      </div>
+    </div>
+    <div id="panelWrap"><div id="panel"></div></div>
+  </div>
+  <div id="adTest">
+    <div id="adTestBox">
+      <div class="phead"><h2 id="adTestT"></h2></div>
+      <div class="row">
+        <div class="ico">📺</div>
+        <div class="info"><div class="name" id="adTestD"></div><div class="desc" id="adTestS"></div></div>
+        <div id="adTestN"></div>
+      </div>
+      <button id="adSkip"></button>
+    </div>
+  </div>
+  <div id="loading">
+    <div class="logo">
+      <div class="l1">CICCIO</div>
+      <div class="l2">MARKET</div>
+      <div class="bar"><div id="barFill"></div></div>
+      <div id="loadTxt"></div>
+    </div>
+  </div>
+</body>
+</html>
